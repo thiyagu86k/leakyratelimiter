@@ -1,4 +1,41 @@
 
+## Deliverables
+* Core implementation of the three required functions
+    * LeakyBucketRateLimiter have the core functionality
+        1. createRateLimiter
+      2. allowRequest
+      3. getBucketState
+
+* Test cases demonstrating correctness across key scenarios
+  * App.java have the following methods to demonstrate the key scenarios
+  1. Basic Usage of Rate Limiter
+  2. Burst Handling of Rate Limiter
+  3. Time based Leaking of Rate Limiter
+  4. Multiple User of Rate Limiter
+  5. Other test and edge cases covered in the Unit Test
+  
+
+* Brief explanation of your design decisions and trade-offs
+### Design Descision
+* SOLID principle
+* Per User Isolation
+* Scalability - Supports unlimited number of users
+* Thread Safety - Concurrent hashmap for concurrent access
+* Continuous Leaking - Smooth rate limiting behavior
+* Time-based Accuracy - Precise leak calculations 
+* Burst Handling - Natural burst tolerance up to capacity
+
+ ### Trade-offs:
+* Time Dependency - Requires accurate timestamp management
+* Clock Synchronization - Sensitive to system clock changes
+* Memory Growth - Memory usage grows with user count
+* No Cleanup - Inactive users remain in memory indefinitely
+* Performance Cost - Object creation and copying overhead
+* GC Pressure - More objects for garbage collection
+
+
+* Source code must be stored in a git repository (github /gitlab / bitbucket)
+  https://github.com/thiyagu86k/leakyratelimiter
 
 ### How to Run This Project
 
@@ -17,6 +54,8 @@
 ### Output:
 
 ```shell
+$ mvn clean install
+
 Leaky Bucket Rate Limiter
 =========================
 
@@ -72,3 +111,6 @@ Final bucket states:
   nitheesh: 2.0/3.0
   agila: 2.0/3.0
 ```
+
+### Run the Test Cases
+![img.png](img.png)
