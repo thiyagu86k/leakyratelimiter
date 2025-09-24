@@ -85,7 +85,7 @@ public class LeakyBucketRateLimiterTest {
         assertTrue(result.isAllowed());
 
         bucket = LeakyBucketRateLimiter.getBucketState(result.getNewLimiterState(), "user1");
-        assertEquals(1.0, bucket.getCurrentLevel(), DELTA); // Only the new request
+        assertEquals(1.0, bucket.getCurrentLevel(), DELTA);
     }
 
     @Test
@@ -138,7 +138,7 @@ public class LeakyBucketRateLimiterTest {
         Bucket info =
                 LeakyBucketRateLimiter.getBucketState(result2.getNewLimiterState(), "user1");
         assertEquals(2.0, info.getCurrentLevel(), DELTA);
-        assertEquals(10.0, info.getLastLeakTime(), DELTA); // Should remain at original time
+        assertEquals(10.0, info.getLastLeakTime(), DELTA);
     }
 
     @Test
